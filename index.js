@@ -19,18 +19,18 @@ function saveToLocalStorage(event){
     }
 
     //to send data from frontend to backend
-    // axios.post("https://crudcrud.com/api/9c94d941017d49ecb75283de2c065790/appointmentData",Obj)
-    // .then((response)=>{
-    //     showUserOnScreen(response.data)
-    //     //console.log(response)       // not required on console
-    // })
-    // .catch((err)=>{
-    //     console.log(err)
-    // })
+    axios.post("https://crudcrud.com/api/9c94d941017d49ecb75283de2c065790/appointmentData",Obj)
+    .then((response)=>{
+        showUserOnScreen(response.data)
+        //console.log(response)       // not required on console
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 
     //to store the object in the local storage
-    localStorage.setItem(Obj.EMAIL,JSON.stringify(Obj))
-    showUserOnScreen(Obj);
+    // localStorage.setItem(Obj.EMAIL,JSON.stringify(Obj))
+    // showUserOnScreen(Obj);
 }
 //------------X TRIAL TO GET DATA FROM LOCAL STORAGE ON PAGE REFRESH X----------------
 // window.addEventListener("DOMContentLoaded",()=>{
