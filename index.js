@@ -32,19 +32,20 @@ function saveToLocalStorage(event){
     // localStorage.setItem(Obj.EMAIL,JSON.stringify(Obj))
     // showUserOnScreen(Obj);
 }
-//------------X TRIAL TO GET DATA FROM LOCAL STORAGE ON PAGE REFRESH X----------------
-// window.addEventListener("DOMContentLoaded",()=>{
-//     const localStorageObj=localStorage;
-//     const localStorageKeys= Object.keys(localStorageObj)
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get("https://crudcrud.com/api/9c94d941017d49ecb75283de2c065790/appointmentData")
+        .then((response)=>{
+            console.log(response); 
+            //On logging the response we see that the data is in the form of an Array of Objects
+            for(var i=0;i<response.data.length;i++){  //going through the Array of Objects
+                showUserOnScreen(response.data[i]);   //Showing each element of the array[basically each object]
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+})
 
-//     for(var i=0;i<localStorageKeys.length;i++){
-//         const key =localStorageKeys[i]
-//         const userDetailsString=localStorageObj[key];
-//         const userDetailsObj=JSON.parse(userDetailsString);
-//         showNewUserOnScreen(userDetailsObj)
-//     }
-// })
-//------------X TRIAL TO GET DATA FROM LOCAL STORAGE ON PAGE REFRESH X----------------
 
 function showUserOnScreen(Obj){
     let parent=document.getElementById("listOfItems") //ul tag
