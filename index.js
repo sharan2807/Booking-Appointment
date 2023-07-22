@@ -15,7 +15,8 @@ function saveToLocalStorage(event){
     const Obj={
         NAME:Name,
         EMAIL:Email,
-        PHONE:Phone
+        PHONE:Phone,
+        _id:id   //to aceess the id to delete from server
     }
 
     //to send data from frontend to backend
@@ -56,8 +57,19 @@ function showUserOnScreen(Obj){
     deleteButton.type="button"
     deleteButton.value="DELETE"
     deleteButton.onclick=()=>{
-        localStorage.removeItem(Obj.EMAIL) //removing the entire object from local storage
-        parent.removeChild(child)  // removing that particular li element fron the screen
+        // localStorage.removeItem(Obj.EMAIL) //removing the entire object from local storage
+        // console.log(Obj._id)  
+        let deletedElem=Obj._id;
+        axios.delete(`https://crudcrud.com/api/9c94d941017d49ecb75283de2c065790/appointmentData/${deletedElem}`)
+        .then((response)=>{
+            // console.log(response.data); 
+            parent.removeChild(child)  // removing that particular li element fron the screen
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+  
+       
     }
     const editButton=document.createElement('input')
     editButton.type='button'
